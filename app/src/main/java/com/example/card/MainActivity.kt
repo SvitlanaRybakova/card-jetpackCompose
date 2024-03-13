@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -34,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.card.ui.theme.CardTheme
+import com.example.card.ui.theme.GrayCustom
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +50,25 @@ class MainActivity : ComponentActivity() {
                ){
                    CircleItem()
                }
+                LazyRow( modifier = Modifier
+                    .fillMaxWidth()
+                    .background(color=GrayCustom)
+                ){
+
+                        itemsIndexed(
+                            listOf(
+                                ItemRowModel(R.drawable.image1, "Eric"),
+                                ItemRowModel(R.drawable.image2, "Amanda"),
+                                ItemRowModel(R.drawable.image3, "Peter"),
+                                ItemRowModel(R.drawable.image4, "Andrea"),
+                                ItemRowModel(R.drawable.image5, "Erika"),
+                                ItemRowModel(R.drawable.image6, "Anastassia")
+                            )){
+                                _, item ->
+                                ItemRow(item = item)
+                            }
+
+                }
             }
         }
     }
@@ -96,11 +118,11 @@ fun CircleItem(){
     Box(modifier = Modifier
         .size(30.dp)
         .background(color = color.value, shape = CircleShape)
-        .clickable{
-            counter.value ++
-        if(counter.value == 10){
-            color.value = Color.Red
-        }
+        .clickable {
+            counter.value++
+            if (counter.value == 10) {
+                color.value = Color.Red
+            }
         },
         contentAlignment = Alignment.Center
     ){
