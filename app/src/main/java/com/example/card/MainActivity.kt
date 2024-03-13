@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
@@ -54,19 +55,37 @@ class MainActivity : ComponentActivity() {
                     .fillMaxWidth()
                     .background(color=GrayCustom)
                 ){
-
                         itemsIndexed(
                             listOf(
-                                ItemRowModel(R.drawable.image1, "Eric"),
-                                ItemRowModel(R.drawable.image2, "Amanda"),
-                                ItemRowModel(R.drawable.image3, "Peter"),
-                                ItemRowModel(R.drawable.image4, "Andrea"),
-                                ItemRowModel(R.drawable.image5, "Erika"),
-                                ItemRowModel(R.drawable.image6, "Anastassia")
+                                ItemRowModel(R.drawable.image1, "Eric", ""),
+                                ItemRowModel(R.drawable.image2, "Amanda", ""),
+                                ItemRowModel(R.drawable.image3, "Peter", ""),
+                                ItemRowModel(R.drawable.image4, "Andrea", ""),
+                                ItemRowModel(R.drawable.image5, "Erika", ""),
+                                ItemRowModel(R.drawable.image6, "Anastassia","")
                             )){
                                 _, item ->
                                 ItemRow(item = item)
                             }
+
+                }
+
+                LazyColumn( modifier = Modifier
+                    .fillMaxWidth()
+                    .background(color=GrayCustom)
+                ){
+                    itemsIndexed(
+                        listOf(
+                            ItemRowModel(R.drawable.image1, "Eric", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras suscipit tincidunt ipsum, vitae venenatis urna feugiat auctor. Mauris sit amet gravida nunc. Mauris lorem mi, vestibulum eget eros in, ornare suscipit dolor. Praesent pellentesque vestibulum nulla, ac lacinia mi accumsan finibus. "),
+                            ItemRowModel(R.drawable.image2, "Amanda", "lorem ipsum"),
+                            ItemRowModel(R.drawable.image3, "Peter", "lorem ipsum"),
+                            ItemRowModel(R.drawable.image4, "Andrea", "lorem ipsum"),
+                            ItemRowModel(R.drawable.image5, "Erika", "lorem ipsum"),
+                            ItemRowModel(R.drawable.image6, "Anastassia","lorem ipsum")
+                        )){
+                            _, item ->
+                        ItemColumn(item = item)
+                    }
 
                 }
             }
